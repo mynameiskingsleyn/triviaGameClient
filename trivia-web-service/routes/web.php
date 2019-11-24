@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+App::missing(function($exception) {
+    return View::make('index');
+});
