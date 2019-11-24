@@ -17,9 +17,13 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-Route::get('/players', 'Api\V2\PlayerController@index');
-Route::get('/players/{id}', 'Api\V2\PlayerController@show');
-Route::post('/players', 'Api\V2\PlayerController@store');
-Route::post('/players/{id}/answers', 'Api\V2\PlayerController@answer');
-Route::delete('/players/{id}', 'Api\V2\PlayerController@delete');
-Route::delete('/players/{id}/answers', 'Api\V2\PlayerController@resetAnswers');
+Route::group(['namespace'=>'Api\V2'], function(){
+    Route::get('/players', 'PlayerController@index');
+    Route::get('/players/{id}', 'PlayerController@show');
+    Route::post('/players', 'PlayerController@store');
+    Route::post('/players/{id}/answers', 'PlayerController@answer');
+    Route::delete('/players/{id}', 'PlayerController@delete');
+    Route::delete('/players/{id}/answers', 'PlayerController@resetAnswers');
+});
+//Route::get('/players', 'Api\V2\PlayerController@index');
+
