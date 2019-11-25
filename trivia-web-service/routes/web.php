@@ -11,10 +11,19 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('', function () {
     return view('welcome');
 });
 
-App::missing(function($exception) {
-    return View::make('index');
-});
+//App::missing(function($exception) {
+//    return View::make('index');
+//});
+
+Route::any( '{catchall}', function ( $page ) {
+    //dd( $page . ' requested' );
+    if($page == 'App'){
+        return View::make('index');
+    }else{
+        return View::make('errors.404');
+    }
+} )->where('catchall', '(.*)');
